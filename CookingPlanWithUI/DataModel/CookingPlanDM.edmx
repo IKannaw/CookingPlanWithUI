@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CookingPlanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Curry">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="curryCategory_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="taste" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurryCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SideDish">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sideDishCategory_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="taste" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SideDishCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Soup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="soupCategory_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="taste" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SoupCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeamMember">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="team_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Curry_CurryCategory">
+          <End Role="CurryCategory" Type="Self.CurryCategory" Multiplicity="1" />
+          <End Role="Curry" Type="Self.Curry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurryCategory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Curry">
+              <PropertyRef Name="curryCategory_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SideDish_SideDishCategory">
+          <End Role="SideDishCategory" Type="Self.SideDishCategory" Multiplicity="1" />
+          <End Role="SideDish" Type="Self.SideDish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SideDishCategory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SideDish">
+              <PropertyRef Name="sideDishCategory_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Soup_SoupCategory">
+          <End Role="SoupCategory" Type="Self.SoupCategory" Multiplicity="1" />
+          <End Role="Soup" Type="Self.Soup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SoupCategory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Soup">
+              <PropertyRef Name="soupCategory_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamMember_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="TeamMember" Type="Self.TeamMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TeamMember">
+              <PropertyRef Name="team_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CookingPlanModelStoreContainer">
+          <EntitySet Name="Curry" EntityType="Self.Curry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurryCategory" EntityType="Self.CurryCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SideDish" EntityType="Self.SideDish" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SideDishCategory" EntityType="Self.SideDishCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Soup" EntityType="Self.Soup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SoupCategory" EntityType="Self.SoupCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamMember" EntityType="Self.TeamMember" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Curry_CurryCategory" Association="Self.FK_Curry_CurryCategory">
+            <End Role="CurryCategory" EntitySet="CurryCategory" />
+            <End Role="Curry" EntitySet="Curry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SideDish_SideDishCategory" Association="Self.FK_SideDish_SideDishCategory">
+            <End Role="SideDishCategory" EntitySet="SideDishCategory" />
+            <End Role="SideDish" EntitySet="SideDish" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Soup_SoupCategory" Association="Self.FK_Soup_SoupCategory">
+            <End Role="SoupCategory" EntitySet="SoupCategory" />
+            <End Role="Soup" EntitySet="Soup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamMember_Team" Association="Self.FK_TeamMember_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="TeamMember" EntitySet="TeamMember" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CookingPlanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Curry">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="curryCategory_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="taste" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CurryCategory" Relationship="Self.FK_Curry_CurryCategory" FromRole="Curry" ToRole="CurryCategory" />
+        </EntityType>
+        <EntityType Name="CurryCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Curries" Relationship="Self.FK_Curry_CurryCategory" FromRole="CurryCategory" ToRole="Curry" />
+        </EntityType>
+        <EntityType Name="SideDish">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sideDishCategory_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="taste" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SideDishCategory" Relationship="Self.FK_SideDish_SideDishCategory" FromRole="SideDish" ToRole="SideDishCategory" />
+        </EntityType>
+        <EntityType Name="SideDishCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SideDishes" Relationship="Self.FK_SideDish_SideDishCategory" FromRole="SideDishCategory" ToRole="SideDish" />
+        </EntityType>
+        <EntityType Name="Soup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="soupCategory_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="taste" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SoupCategory" Relationship="Self.FK_Soup_SoupCategory" FromRole="Soup" ToRole="SoupCategory" />
+        </EntityType>
+        <EntityType Name="SoupCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Soups" Relationship="Self.FK_Soup_SoupCategory" FromRole="SoupCategory" ToRole="Soup" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TeamMembers" Relationship="Self.FK_TeamMember_Team" FromRole="Team" ToRole="TeamMember" />
+        </EntityType>
+        <EntityType Name="TeamMember">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="team_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_TeamMember_Team" FromRole="TeamMember" ToRole="Team" />
+        </EntityType>
+        <Association Name="FK_Curry_CurryCategory">
+          <End Role="CurryCategory" Type="Self.CurryCategory" Multiplicity="1" />
+          <End Role="Curry" Type="Self.Curry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurryCategory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Curry">
+              <PropertyRef Name="curryCategory_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SideDish_SideDishCategory">
+          <End Role="SideDishCategory" Type="Self.SideDishCategory" Multiplicity="1" />
+          <End Role="SideDish" Type="Self.SideDish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SideDishCategory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SideDish">
+              <PropertyRef Name="sideDishCategory_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Soup_SoupCategory">
+          <End Role="SoupCategory" Type="Self.SoupCategory" Multiplicity="1" />
+          <End Role="Soup" Type="Self.Soup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SoupCategory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Soup">
+              <PropertyRef Name="soupCategory_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamMember_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="TeamMember" Type="Self.TeamMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TeamMember">
+              <PropertyRef Name="team_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CookingPlanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Curries" EntityType="Self.Curry" />
+          <EntitySet Name="CurryCategories" EntityType="Self.CurryCategory" />
+          <EntitySet Name="SideDishes" EntityType="Self.SideDish" />
+          <EntitySet Name="SideDishCategories" EntityType="Self.SideDishCategory" />
+          <EntitySet Name="Soups" EntityType="Self.Soup" />
+          <EntitySet Name="SoupCategories" EntityType="Self.SoupCategory" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="TeamMembers" EntityType="Self.TeamMember" />
+          <AssociationSet Name="FK_Curry_CurryCategory" Association="Self.FK_Curry_CurryCategory">
+            <End Role="CurryCategory" EntitySet="CurryCategories" />
+            <End Role="Curry" EntitySet="Curries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SideDish_SideDishCategory" Association="Self.FK_SideDish_SideDishCategory">
+            <End Role="SideDishCategory" EntitySet="SideDishCategories" />
+            <End Role="SideDish" EntitySet="SideDishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Soup_SoupCategory" Association="Self.FK_Soup_SoupCategory">
+            <End Role="SoupCategory" EntitySet="SoupCategories" />
+            <End Role="Soup" EntitySet="Soups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamMember_Team" Association="Self.FK_TeamMember_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="TeamMember" EntitySet="TeamMembers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CookingPlanModelStoreContainer" CdmEntityContainer="CookingPlanEntities">
+          <EntitySetMapping Name="Curries">
+            <EntityTypeMapping TypeName="CookingPlanModel.Curry">
+              <MappingFragment StoreEntitySet="Curry">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="curryCategory_id" ColumnName="curryCategory_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="taste" ColumnName="taste" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurryCategories">
+            <EntityTypeMapping TypeName="CookingPlanModel.CurryCategory">
+              <MappingFragment StoreEntitySet="CurryCategory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SideDishes">
+            <EntityTypeMapping TypeName="CookingPlanModel.SideDish">
+              <MappingFragment StoreEntitySet="SideDish">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sideDishCategory_id" ColumnName="sideDishCategory_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="taste" ColumnName="taste" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SideDishCategories">
+            <EntityTypeMapping TypeName="CookingPlanModel.SideDishCategory">
+              <MappingFragment StoreEntitySet="SideDishCategory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Soups">
+            <EntityTypeMapping TypeName="CookingPlanModel.Soup">
+              <MappingFragment StoreEntitySet="Soup">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="soupCategory_id" ColumnName="soupCategory_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="taste" ColumnName="taste" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SoupCategories">
+            <EntityTypeMapping TypeName="CookingPlanModel.SoupCategory">
+              <MappingFragment StoreEntitySet="SoupCategory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CookingPlanModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="CookingPlanModel.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamMembers">
+            <EntityTypeMapping TypeName="CookingPlanModel.TeamMember">
+              <MappingFragment StoreEntitySet="TeamMember">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="team_id" ColumnName="team_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

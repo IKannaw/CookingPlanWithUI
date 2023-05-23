@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="CookingPlanWithUI.UI.Team.Member"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CookingPlanWithUI.UI.Team"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="60"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="WhiteSmoke" >
+            <Label FontSize="25" FontWeight="Bold" Margin="284,0,328,10">Member list</Label>
+        </Grid>
+        <Grid Grid.Row="1">
+            <TextBox Name="searchName" Margin="25,0,0,0" HorizontalAlignment="Left" Width="200" Height="30"/>
+            <Button Name="btnAdd" Width="100" HorizontalAlignment="Left" Margin="690,10,0,10" Height="30"  Content="Add" Background="Green" Foreground="White" Click="btnAdd_Click"/>
+        </Grid>
+        <Grid Grid.Row="2" Margin="20">
+            <DataGrid Name="memberDataGrid" IsReadOnly="True" Grid.Row="1" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="#"  Width="50"/>
+                    <DataGridTextColumn Header="Team Name" Width="120" />
+                    <DataGridTextColumn Header="Name" Width="140" />
+                    <DataGridTextColumn Header="Description" Width="160"/>
+                    <DataGridTextColumn Header="Created at" Width="160"/>
+                    <DataGridTemplateColumn Header="Action" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="60" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0"
+                                                Margin="5"
+                                                BorderBrush="#46FF05"
+                                                BorderThickness="2"
+                                                Background="White"
+                                                Style="{Binding editIncomeButton}">
+                                        <TextBlock Text="Edit" Foreground="#46FF05"/>
+                                    </Button>
+                                    <Button Grid.Column="1"
+                                               Style="{Binding deleteBtn}"
+                                                Background="#D10A0A"
+                                                Margin="5">
+                                        <TextBlock Text="Delete" Foreground="White"/>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>
