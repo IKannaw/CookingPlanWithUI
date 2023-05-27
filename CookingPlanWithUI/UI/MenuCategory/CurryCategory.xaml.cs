@@ -32,10 +32,12 @@ namespace CookingPlanWithUI.UI.Menu_Categories
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             Components.MenuCategoryComponents.CreateCurryCategory curryCateDialog = new CreateCurryCategory(curryCategoryDatagrid);
+            curryCateDialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             curryCateDialog.lblCurryCategory.Content = "Create Curry Category";
             curryCateDialog.btnCreate.Content = "Create";
             curryCateDialog.ShowDialog();
         }
+
 
         public void DisplayData()
         {
@@ -115,8 +117,8 @@ namespace CookingPlanWithUI.UI.Menu_Categories
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainMenuCategories mainMenuCategories = new MainMenuCategories();
             this.Visibility = Visibility.Hidden;
+            MainMenuCategories mainMenuCategories = new MainMenuCategories();
             mainMenuCategories.Visibility = Visibility.Visible;
 
         }

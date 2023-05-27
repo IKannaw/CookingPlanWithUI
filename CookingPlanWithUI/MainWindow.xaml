@@ -7,7 +7,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:MenuCategory="clr-namespace:CookingPlanWithUI.UI.Menu_Categories"
         xmlns:MenuItem="clr-namespace:CookingPlanWithUI.UI.Menu_Item"
-        xmlns:MainDasPage="clr-namespace:CookingPlanWithUI.U"
+        xmlns:Export="clr-namespace:CookingPlanWithUI.UI.Export"
         xmlns:Team="clr-namespace:CookingPlanWithUI.UI.Team"
         mc:Ignorable="d"
         WindowStyle="None"
@@ -17,10 +17,10 @@
         Background="Transparent"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/images/morden.jpg" Opacity="0.4"/>
-        </Grid.Background>
-        <Grid Name="mainPage">
+        <Grid Name="mainPage" Visibility="Visible">
+            <Grid.Background>
+                <ImageBrush ImageSource="/images/morden.jpg" Opacity="0.4"/>
+            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="118*"/>
                 <RowDefinition Height="241*"/>
@@ -42,7 +42,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Row="0">
-                    <Button Name="btnExport" Height="120" Width="370" Background="White" Margin="22,0,8,0">
+                    <Button Name="btnExport" Height="120" Width="370" Background="White" Margin="22,0,8,0" Click="btnExport_Click">
                         <Grid>
                             <Icon:PackIconMaterial Foreground="Green" Width="75" HorizontalAlignment="Center" Height="50"  Kind="Offer" Margin="-10,-21,19,0"/>
                             <TextBlock FontWeight="Bold" FontSize="18" Text="Export" Margin="-14,40,14,-28" Foreground="Black"/>
@@ -78,6 +78,7 @@
                 <TextBlock Margin="22" VerticalAlignment="Center" FontSize="15" Text="Copyright © 2023.All right reserved." Foreground="#FFEEEAEA"/>
             </Grid>
         </Grid>
+        <Export:Export x:Name="exportPage" Visibility="Hidden" />
         <MenuCategory:MainMenuCategories x:Name="mainMenuCategory" Visibility="Hidden"/>
         <MenuItem:MainMenuItem x:Name="mainMenuItem" Visibility="Hidden"/>
         <Team:MainTeamxaml x:Name="mainTeam" Visibility="Hidden"/>  

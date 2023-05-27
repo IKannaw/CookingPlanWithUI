@@ -1,13 +1,11 @@
-﻿<Window x:Class="CookingPlanWithUI.Components.TeamMemberComponents.AddTeam"
+﻿<Window x:Class="CookingPlanWithUI.Components.TeamMemberComponents.UpdateTeam"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CookingPlanWithUI.Components.TeamMemberComponents"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
-        Title="AddTeam" Height="350" Width="280">
+        Title="UpdateTeam" Height="350" Width="280">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

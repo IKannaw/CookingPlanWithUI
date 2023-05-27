@@ -1,14 +1,11 @@
-﻿<Window x:Class="CookingPlanWithUI.Components.TeamMemberComponents.AddMember"
+﻿<Window x:Class="CookingPlanWithUI.Components.TeamMemberComponents.UpdateMember"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CookingPlanWithUI.Components.TeamMemberComponents"
         mc:Ignorable="d"
-        WindowStyle="ThreeDBorderWindow"
-        WindowStartupLocation="CenterScreen"
-        FontFamily="Arial"
-        Title="AddMember" Height="350" Width="280">
+        Title="UpdateMember" Height="350" Width="280">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="53"/>
@@ -39,7 +36,7 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Row="4">
-            <Button Name="btnCreate" Content="" Width="250" Height="30" Margin="12,10,10,5" Click="btnCreate_Click"/>
+            <Button Name="btnCreate" Content="" Width="250" Height="30" Margin="12,10,10,5" Click="btnUpdate"/>
         </Grid>
     </Grid>
 </Window>

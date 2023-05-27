@@ -17,12 +17,12 @@
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="WhiteSmoke">
-            <Label HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center">Create Soup</Label>
+            <Label Name="lblSoup" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"></Label>
         </Grid>
         <Grid Grid.Row="1">
             <StackPanel Margin="0,10,0,0">
                 <Label Margin="7,0,162,0">Select Category</Label>
-                <ComboBox Name="cmbSoupCategory" Width="250" Height="30"/>
+                <ComboBox Name="cmbSoupCategory" DisplayMemberPath="name" SelectedValuePath="id" Width="250" Height="30"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="2">
@@ -34,7 +34,12 @@
                 <Label Margin="10,0,154,0" >Name</Label>
                 <TextBox Name="txbName" Height="30" Margin="11,0,10,0"/>
             </StackPanel>
-            <ComboBox Name="cmbTaste" Grid.Column="1" Width="50" Height="30" Margin="5,26,5,14"/>
+            <ComboBox Name="cmbTaste" Grid.Column="1" Width="50" Height="30" Margin="5,26,5,14">
+                <ComboBoxItem>ချို</ComboBoxItem>
+                <ComboBoxItem>စပ်</ComboBoxItem>
+                <ComboBoxItem>ချဉ်</ComboBoxItem>
+                <ComboBoxItem>ငံ</ComboBoxItem>
+            </ComboBox>
         </Grid>
         <Grid Grid.Row="3">
             <StackPanel Margin="0,10,0,0">
@@ -43,7 +48,7 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Row="4">
-            <Button Name="btnCreate" Content="Create" Width="250" Height="30"/>
+            <Button Name="btnCreate" Content="" Width="250" Height="30" Click="btnCreate_Click"/>
         </Grid>
     </Grid>
 </Window>

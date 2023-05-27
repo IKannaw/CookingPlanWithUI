@@ -143,6 +143,9 @@
     <Reference Include="MahApps.Metro.IconPacks.Zondicons, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.IconPacks.4.11.0\lib\net46\MahApps.Metro.IconPacks.Zondicons.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -190,6 +193,12 @@
     <Compile Include="Components\TeamMemberComponents\AddTeam.xaml.cs">
       <DependentUpon>AddTeam.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\TeamMemberComponents\UpdateMember.xaml.cs">
+      <DependentUpon>UpdateMember.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\TeamMemberComponents\UpdateTeam.xaml.cs">
+      <DependentUpon>UpdateTeam.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataModel\CookingPlanDM.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -232,9 +241,11 @@
     <Compile Include="DataModel\TeamMember.cs">
       <DependentUpon>CookingPlanDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataModel\TeamMember2.cs" />
     <Compile Include="UI\Export\Export.xaml.cs">
       <DependentUpon>Export.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Export\MenuItem.cs" />
     <Compile Include="UI\MainPage\MainDashPage.xaml.cs">
       <DependentUpon>MainDashPage.xaml</DependentUpon>
     </Compile>
@@ -301,6 +312,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\TeamMemberComponents\AddTeam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\TeamMemberComponents\UpdateMember.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\TeamMemberComponents\UpdateTeam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -403,7 +422,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DataModel\NewFolder1\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\morden.jpg" />
   </ItemGroup>

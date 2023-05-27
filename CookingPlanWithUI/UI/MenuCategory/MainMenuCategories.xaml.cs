@@ -24,12 +24,11 @@ namespace CookingPlanWithUI.UI.Menu_Categories
 
         public MainMenuCategories()
         {
-            InitializeComponent();          
+            InitializeComponent();
         }
 
         private void btnCurryCategory_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Hidden;
             soupCategoryPage.Visibility = Visibility.Hidden;
             sideDCategoryPage.Visibility = Visibility.Hidden;
             curryCategoryPage.Visibility = Visibility.Visible;
@@ -37,30 +36,29 @@ namespace CookingPlanWithUI.UI.Menu_Categories
 
         private void btnSoupCategory_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Hidden;
-            btnSideDishCategory.Visibility = Visibility.Hidden;
+            sideDCategoryPage.Visibility = Visibility.Hidden;
             curryCategoryPage.Visibility = Visibility.Hidden;
             soupCategoryPage.Visibility = Visibility.Visible;
         }
 
         private void btnSideDishCategory_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Hidden;
             curryCategoryPage.Visibility = Visibility.Hidden;
             soupCategoryPage.Visibility = Visibility.Hidden;
             sideDCategoryPage.Visibility = Visibility.Visible;           
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow main = new MainWindow();
-            this.Visibility = Visibility.Hidden;
-            main.Visibility = Visibility.Visible;
-        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnBack(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            this.Visibility = Visibility.Hidden;    
+            main.Visibility = Visibility.Visible;
         }
     }
 }

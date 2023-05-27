@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -63,8 +64,8 @@ namespace CookingPlanWithUI.Components.MenuCategoryComponents
         {
             try
             {
-                DataModel.CurryCategory value = curryCateDataGrid.SelectedItem as DataModel.CurryCategory;
-                DataModel.CurryCategory updateCryCty = ( from i in db.CurryCategories where i.id == value.id select i).Single();
+                DataModel.CurryCategory selectedCurryCat = curryCateDataGrid.SelectedItem as DataModel.CurryCategory;
+                DataModel.CurryCategory updateCryCty = ( from i in db.CurryCategories where i.id == selectedCurryCat.id select i).Single();
                 updateCryCty.name = txbName.Text;
                 updateCryCty.description = txbDescription.Text;
                 db.SaveChanges();

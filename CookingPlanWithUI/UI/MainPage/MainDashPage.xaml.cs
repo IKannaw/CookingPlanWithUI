@@ -20,9 +20,12 @@ namespace CookingPlanWithUI.UI.MainPage
     /// </summary>
     public partial class MainPage : UserControl
     {
+        MainWindow main = new MainWindow();
         public MainPage()
         {
             InitializeComponent();
         }
+
+        
     }
 }

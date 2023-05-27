@@ -22,7 +22,7 @@
         <Grid Grid.Row="1">
             <StackPanel Margin="0,10,0,0">
                 <Label Margin="7,0,162,0">Select Category</Label>
-                <ComboBox Name="cmbCurryCategory" DisplayMemberPath="name"  Width="250" Height="30"/>
+                <ComboBox Name="cmbCurryCategory" DisplayMemberPath="name" SelectedValuePath="id"  Width="250" Height="30"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="2">

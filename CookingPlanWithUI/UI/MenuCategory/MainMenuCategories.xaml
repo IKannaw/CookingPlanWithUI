@@ -9,6 +9,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/images/morden.jpg" Opacity="0.4"/>
+            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="118*"/>
                 <RowDefinition Height="241*"/>
@@ -18,10 +21,9 @@
                 <Grid >
                     <Icon:PackIconMaterial Kind="Account" Foreground="White" Width="50" Height="25" HorizontalAlignment="Center" Margin="258,0,492,64" VerticalAlignment="Bottom"/>
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Menu Category" Foreground="White" FontSize="35" Margin="311,20,218,52" Width="271"/>
-                    <Button HorizontalAlignment="Left" Margin="688,39,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click">
-                        <Icon:PackIconMaterial Kind="Backburger" Foreground="White"/>
+                    <Button Background="Yellow" HorizontalAlignment="Left" Margin="688,31,0,0" VerticalAlignment="Top" Width="75" Click="btnBack" Height="41">
+                        <Icon:PackIconMaterial Kind="Home" Width="40" Height="40" Foreground="White"/>
                     </Button>
-                    <Button Content="Button" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="1">

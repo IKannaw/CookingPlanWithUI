@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:CookingPlanWithUI.UI.Menu_Item"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d"            
+             d:DesignHeight="450" 
+             d:DesignWidth="800">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition  Height="60"/>
@@ -14,20 +16,23 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="WhiteSmoke" >
             <Label FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="326,4,299,14" Width="175">Side Dish List</Label>
+            <Button  HorizontalAlignment="Left" Margin="715,25,0,0" VerticalAlignment="Top" Width="75" Click="btnBack">
+                <Icon:PackIconMaterial Kind="Backburger" />
+            </Button>
         </Grid>
         <Grid Grid.Row="1">
             <TextBox Name="btnSearch" Margin="25,0,0,0" HorizontalAlignment="Left" Width="200" Height="30"/>
             <Button Name="btnAdd" Width="100" HorizontalAlignment="Right" Margin="0,12,10,8" Height="30"  Content="Add" Background="Green" Foreground="White" Click="btnAdd_Click"/>
         </Grid>
         <Grid Grid.Row="2" Margin="20">
-            <DataGrid Name="sideDishDataGrid" IsReadOnly="True" Grid.Row="1" AutoGenerateColumns="False" >
+            <DataGrid Name="sideDishDataGrid" IsReadOnly="True" Grid.Row="1" AutoGenerateColumns="False" SelectionChanged="sideDishDataGrid_SelectionChanged" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="#"  Width="40"/>
-                    <DataGridTextColumn Header="Category" Width="100"  />
-                    <DataGridTextColumn Header="Name" Width="150" />
-                    <DataGridTextColumn Header="Taste" Width="50" />
-                    <DataGridTextColumn Header="Description" Width="150"/>
-                    <DataGridTextColumn Header="Created at" Width="140"/>
+                    <DataGridTextColumn Header="#"  Width="40" Binding="{Binding id}"/>
+                    <DataGridTextColumn Header="Category" Width="100" Binding="{Binding sideDishCategory_id}"  />
+                    <DataGridTextColumn Header="Name" Width="150" Binding="{Binding name}"/>
+                    <DataGridTextColumn Header="Taste" Width="50" Binding="{Binding taste}"/>
+                    <DataGridTextColumn Header="Description" Width="150" Binding="{Binding description}"/>
+                    <DataGridTextColumn Header="Created at" Width="140" Binding="{Binding created_at}"/>
                     <DataGridTemplateColumn Header="Action" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -40,18 +45,18 @@
                                         <ColumnDefinition Width="60" />
                                     </Grid.ColumnDefinitions>
                                     <Button Grid.Column="0"
-                                                Margin="5"
-                                                BorderBrush="#46FF05"
-                                                BorderThickness="2"
                                                 Background="White"
-                                                Style="{Binding editIncomeButton}">
-                                        <TextBlock Text="Edit" Foreground="#46FF05"/>
+                                                Margin="5"
+                                                BorderBrush="WhiteSmoke"
+                                                BorderThickness="1" Click="btnEdit"                                           >
+                                        <Icon:PackIconMaterial Kind="StoreEdit" Foreground="Gray"/>
                                     </Button>
-                                    <Button Grid.Column="1"
-                                               Style="{Binding deleteBtn}"
-                                                Background="#D10A0A"
-                                                Margin="5">
-                                        <TextBlock Text="Delete" Foreground="White"/>
+                                    <Button Grid.Column="1" 
+                                               Background="White"
+                                                BorderBrush="WhiteSmoke"
+                                                BorderThickness="1"
+                                                Margin="5" Click="btnDelete">
+                                        <Icon:PackIconMaterial Kind="Delete" Foreground="Red" Background="White"/>
                                     </Button>
                                 </Grid>
                             </DataTemplate>

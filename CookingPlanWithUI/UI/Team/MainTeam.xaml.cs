@@ -36,5 +36,13 @@ namespace CookingPlanWithUI.UI.Team
             teamPage.Visibility = Visibility.Hidden;
             memberPage.Visibility = Visibility.Visible;       
         }
+
+        private void btnHome(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+            MainWindow main = new MainWindow();
+            main.Visibility = Visibility.Visible;
+          
+        }
     }
 }

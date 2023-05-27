@@ -43,15 +43,64 @@ namespace CookingPlanWithUI.UI.Menu_Item
 
         private void btnEdit(object sender, RoutedEventArgs e)
         {
+
+            DataModel.Curry selectedItem = curryDataGrid.SelectedItem as DataModel.Curry;
+            DataModel.CurryCategory curryCategory = (from d in db.CurryCategories
+                                                    where d.id == selectedItem.curryCategory_id
+                                                    select d.name) as DataModel.CurryCategory;
+            string name = selectedItem.name;
+            string category = curryCategory.name;
+            string description = selectedItem.description;
+            string taste = selectedItem.taste;
             Components.MenuItemComponents.AddCurry editCurryDialog = new Components.MenuItemComponents.AddCurry(curryDataGrid);
-            editCurryDialog.lblCurry.Content = "Update Curry";
-            editCurryDialog.btnCreate.Content = "Update";
-            editCurryDialog.ShowDialog();
+            // Use the id variable as needed
+            // Retrieve the name from the database using LINQ query
+            
+                editCurryDialog.lblCurry.Content = "Update Curry";
+                editCurryDialog.btnCreate.Content = "Update";
+       
+                // Populate the ComboBox items for cmbCurryCategory
+                editCurryDialog.cmbCurryCategory.ItemsSource = db.CurryCategories.ToList();
+                editCurryDialog.cmbCurryCategory.DisplayMemberPath = "name";
+                editCurryDialog.cmbCurryCategory.SelectedValuePath = "id";
+                editCurryDialog.cmbCurryCategory.SelectedValue = category;
+               editCurryDialog.cmbTaste.Text = taste;
+
+                //// Populate the ComboBox items for cmbTaste
+                //ComboBoxItem selectedTasteItem = editCurryDialog.cmbTaste.Items.OfType<ComboBoxItem>().FirstOrDefault(item => item.Content.ToString() == selectedItem.taste);
+                //editCurryDialog.cmbTaste.SelectedItem = selectedTasteItem;
+
+                editCurryDialog.ShowDialog();
+           
+           
         }
 
         private void btnDelete(object sender, RoutedEventArgs e)
         {
+            if (DeleteValid())
+            {
+                try
+                {
+                    DataModel.Curry curry = curryDataGrid.SelectedItem as DataModel.Curry;
+                    var deleteCurry = db.Curries.Where(d => d.id == curry.id).Single();
+                    db.Curries.Remove(deleteCurry);
+                    db.SaveChanges();
+                    curryDataGrid.ItemsSource = db.Curries.ToList();
+                    MessageBox.Show("Deleted successfully", " ", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
 
+
+
+        public bool DeleteValid()
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure to delete?", " ", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            return result == MessageBoxResult.Yes ? true : false;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

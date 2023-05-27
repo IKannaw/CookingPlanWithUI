@@ -26,13 +26,14 @@ namespace CookingPlanWithUI.Components.MenuItemComponents
         {
             InitializeComponent();
             curryDataGrid = _curryDataGrid;
+            LoadData();
             loadCmbCurry();
         }
 
         private void loadCmbCurry()
         {
             var curryCatData = db.CurryCategories.ToList();          
-            cmbCurryCategory.ItemsSource = curryCatData.ToList();
+            cmbCurryCategory.ItemsSource = curryCatData;
         }
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
@@ -47,7 +48,7 @@ namespace CookingPlanWithUI.Components.MenuItemComponents
         {
             try
             {
-                DataModel.CurryCategory selectedCategory = new DataModel.CurryCategory();
+                DataModel.CurryCategory selectedCategory = cmbCurryCategory.SelectedItem as DataModel.CurryCategory;
                 // Retrieve the selected value from the ComboBox
                 string selectedTaste = cmbTaste.SelectedItem?.ToString();
 
@@ -56,7 +57,7 @@ namespace CookingPlanWithUI.Components.MenuItemComponents
 
                 DataModel.Curry newCurry = new DataModel.Curry()
                 {
-                    curryCategory_id = int.Parse(cmbCurryCategory.SelectedIndex.ToString()),
+                    curryCategory_id = selectedCategory.id,
                     name = txbName.Text,
                     taste = selectedTaste,
                     description = txbDescription.Text,
@@ -74,8 +75,31 @@ namespace CookingPlanWithUI.Components.MenuItemComponents
 
         private void update()
         {
+            try
+            {
+                DataModel.Curry selectedCurry = curryDataGrid.SelectedItems as DataModel.Curry;
+                DataModel.Curry selectedTaste = cmbTaste.SelectedItem as DataModel.Curry;
+                DataModel.Curry updateCurry = (from c in db.Curries where c.id == selectedCurry.id select c).Single();
+                updateCurry.name = txbName.Text;
+                updateCurry.curryCategory_id =int.Parse(cmbCurryCategory.SelectedValuePath);
+                updateCurry.taste = selectedTaste.taste;
+                updateCurry.description = txbDescription.Text;
+                db.SaveChanges();
+                curryDataGrid.ItemsSource = db.Curries.ToList();
+                this.Close();
+            }
+            catch
+            {
 
+            }
         }
+
+        public void LoadData()
+        {
+            var loadData = db.Curries.ToList();
+            curryDataGrid.ItemsSource = loadData;
+        }
+
 
         private void cmbCurryCategory_SourceUpdated(object sender, DataTransferEventArgs e)
         {

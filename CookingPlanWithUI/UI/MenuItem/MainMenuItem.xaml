@@ -10,6 +10,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/images/morden.jpg" Opacity="0.4"/>
+            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="118*"/>
                 <RowDefinition Height="241*"/>
@@ -63,7 +66,7 @@
             </Grid>
         </Grid>
         <local:Curry x:Name="curryPage" Visibility="Hidden"/>
-        <local:SideDish x:Name="soupPage" Visibility="Hidden"/>
-        <local:Soup x:Name="sideDishPage" Visibility="Hidden"/>
+        <local:SideDish x:Name="sideDishPage" Visibility="Hidden"/>
+        <local:Soup x:Name="soupPage" Visibility="Hidden"/>
     </Grid>
 </UserControl>

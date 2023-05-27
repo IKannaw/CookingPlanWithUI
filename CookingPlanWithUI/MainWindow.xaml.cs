@@ -22,10 +22,10 @@ namespace CookingPlanWithUI
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();         
         }
 
-        private void btnMenuItems_Click(object sender, RoutedEventArgs e)
+        public void btnMenuItems_Click(object sender, RoutedEventArgs e)
         {
             mainPage.Visibility = Visibility.Hidden;
             mainMenuCategory.Visibility = Visibility.Hidden;
@@ -35,18 +35,27 @@ namespace CookingPlanWithUI
 
         private void btnMenuCategories_Click(object sender, RoutedEventArgs e)
         {
-            mainMenuItem.Visibility = Visibility.Hidden;
             mainPage.Visibility = Visibility.Hidden;
+            mainMenuItem.Visibility = Visibility.Hidden;
             mainTeam.Visibility = Visibility.Hidden;
             mainMenuCategory.Visibility = Visibility.Visible;
         }
 
         private void btnTeam_Click(object sender, RoutedEventArgs e)
         {
-            mainMenuItem.Visibility = Visibility.Hidden;
             mainPage.Visibility = Visibility.Hidden;
+            mainMenuItem.Visibility = Visibility.Hidden;
             mainMenuCategory.Visibility = Visibility.Hidden;
             mainTeam.Visibility = Visibility.Visible;
+        }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            mainPage.Visibility = Visibility.Hidden;
+            mainMenuItem.Visibility = Visibility.Hidden;
+            mainMenuCategory.Visibility = Visibility.Hidden;
+            mainTeam.Visibility = Visibility.Hidden;
+            exportPage.Visibility = Visibility.Visible;
         }
     }
 }

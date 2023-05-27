@@ -111,5 +111,11 @@ namespace CookingPlanWithUI.UI.Menu_Categories
             }
         }
 
+        private void btnBack(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+            MainMenuCategories mainMenuCategory = new MainMenuCategories();
+            mainMenuCategory.Visibility = Visibility.Visible;
+        }
     }
 }
